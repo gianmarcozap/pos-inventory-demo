@@ -83,7 +83,7 @@ export default function App() {
 
       {/* Global Interactive Toast Notification */}
       {toast && (
-        <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl shadow-warm-lg bg-white border border-stone-200/90 text-xs font-semibold animate-in slide-in-from-bottom-3 duration-200 max-w-sm">
+        <div className="fixed bottom-4 left-6 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl shadow-warm-lg bg-white border border-stone-200/90 text-xs font-semibold animate-in slide-in-from-bottom-3 duration-200 max-w-sm">
           {toast.type === 'success' && (
             <CheckCircle2 className="w-4 h-4 text-[#A3B454] shrink-0" />
           )}

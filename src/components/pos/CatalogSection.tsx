@@ -27,21 +27,21 @@ export const CatalogSection: React.FC = () => {
   })
 
   return (
-    <section className="w-full lg:w-[65%] h-full flex flex-col overflow-hidden p-5 bg-[#FAF9F5]">
+    <section className="w-full lg:w-[65%] h-full flex flex-col overflow-hidden p-4 bg-[#FAF9F5]">
       {/* Search & Scanner */}
-      <div className="shrink-0 mb-3">
+      <div className="shrink-0 mb-2.5">
         <SearchBar />
       </div>
 
       {/* Category Pills Filter */}
-      <div className="shrink-0 mb-3">
+      <div className="shrink-0 mb-2.5">
         <CategoryTabs />
       </div>
 
       {/* Product Grid */}
-      <div className="flex-1 overflow-y-auto pr-1">
+      <div className="flex-1 min-h-0 overflow-y-auto pr-1">
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 xl:grid-cols-4 gap-3.5 pb-4">
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-2.5 pb-2">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

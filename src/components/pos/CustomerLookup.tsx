@@ -47,27 +47,28 @@ export const CustomerLookup: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#FFFDF7] p-3 rounded-xl border border-stone-200/80 select-none">
-      <div className="flex items-center justify-between mb-1.5">
-        <label className="text-[11px] font-bold text-stone-700 flex items-center gap-1.5 uppercase tracking-wider">
-          <UserCheck className="w-3.5 h-3.5 text-stone-500" />
-          <span>Cliente / Comprobante</span>
+    <div className="bg-[#FFFDF7] p-2 rounded-xl border border-stone-200/80 select-none">
+      <div className="flex items-center justify-between mb-1">
+        <label className="text-[10px] font-bold text-stone-600 flex items-center gap-1 uppercase tracking-wider">
+          <UserCheck className="w-3 h-3 text-stone-400" />
+          <span>Cliente</span>
         </label>
 
-        {/* Quick simulation button requested in prompt */}
+        {/* Quick simulation button */}
         <button
           type="button"
           onClick={handleAutocompleteDefault}
           disabled={isLoading}
-          className="flex items-center gap-1 text-[11px] font-semibold text-amber-900 bg-[#FFF7E1] hover:bg-[#FFE8A1] px-2 py-0.5 rounded-md border border-[#FFE8A1] transition-all active:scale-95"
+          className="flex items-center gap-1 text-[10px] font-bold text-amber-900 bg-[#FFF7E1] hover:bg-[#FFE8A1] px-2 py-0.5 rounded-md border border-[#FFE8A1] transition-all active:scale-95"
+          title="Autocompletar con DNI 72849102"
         >
-          <Sparkles className="w-3 h-3 text-amber-600" />
+          <Sparkles className="w-2.5 h-2.5 text-amber-600" />
           <span>Autocompletar DNI</span>
         </button>
       </div>
 
       {isDefault ? (
-        <div className="space-y-2">
+        <div className="relative">
           <div className="relative flex items-center">
             <input
               type="text"
@@ -80,15 +81,15 @@ export const CustomerLookup: React.FC = () => {
                 }
               }}
               placeholder="DNI (8 dígitos) o RUC..."
-              className="w-full pl-3 pr-20 py-1.5 text-xs bg-white rounded-lg border border-stone-200 text-stone-800 placeholder-stone-400 focus:outline-none focus:border-stone-400 focus:ring-1 focus:ring-stone-200 font-mono"
+              className="w-full pl-2.5 pr-16 py-1 text-xs bg-white rounded-lg border border-stone-200 text-stone-800 placeholder-stone-400 focus:outline-none focus:border-stone-400 font-mono"
             />
-            <div className="absolute right-1 flex items-center gap-1">
+            <div className="absolute right-1 flex items-center gap-0.5">
               {dniInput && (
                 <button
                   type="button"
                   onClick={() => handleLookup()}
                   disabled={isLoading}
-                  className="px-2 py-1 bg-stone-900 hover:bg-stone-800 text-white rounded text-[10px] font-bold transition-colors"
+                  className="px-1.5 py-0.5 bg-stone-900 hover:bg-stone-800 text-white rounded text-[9px] font-bold transition-colors"
                 >
                   {isLoading ? '...' : 'Buscar'}
                 </button>
@@ -99,26 +100,26 @@ export const CustomerLookup: React.FC = () => {
                 className="p-1 text-stone-400 hover:text-stone-700"
                 title="Clientes frecuentes"
               >
-                <ChevronDown className="w-3.5 h-3.5" />
+                <ChevronDown className="w-3 h-3" />
               </button>
             </div>
           </div>
 
           {/* Quick list of frequent customers */}
           {showDropdown && (
-            <div className="bg-white rounded-lg border border-stone-200 shadow-warm p-1 space-y-0.5 text-xs z-10">
-              <div className="px-2 py-1 text-[10px] uppercase font-bold text-stone-400">
-                Clientes frecuentes en Sullana
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg border border-stone-200 shadow-warm p-1 space-y-0.5 text-xs z-20">
+              <div className="px-2 py-0.5 text-[9px] uppercase font-bold text-stone-400">
+                Clientes frecuentes
               </div>
               {Object.values(MOCK_CUSTOMERS_DB).map((c) => (
                 <button
                   key={c.documentNumber}
                   onClick={() => handleSelectCustomer(c)}
-                  className="w-full text-left px-2 py-1.5 rounded hover:bg-[#FFF7E1] flex items-center justify-between text-stone-800"
+                  className="w-full text-left px-2 py-1 rounded hover:bg-[#FFF7E1] flex items-center justify-between text-stone-800"
                 >
                   <div>
-                    <span className="font-semibold">{c.name}</span>
-                    <span className="text-[10px] text-stone-400 font-mono ml-1.5">
+                    <span className="font-semibold text-xs">{c.name}</span>
+                    <span className="text-[10px] text-stone-400 font-mono ml-1">
                       {c.documentType} {c.documentNumber}
                     </span>
                   </div>
@@ -127,26 +128,16 @@ export const CustomerLookup: React.FC = () => {
               ))}
             </div>
           )}
-
-          <div className="text-[11px] text-stone-600 flex items-center justify-between px-1">
-            <span>Cliente: <strong className="text-stone-700">General / Ocasional</strong></span>
-            <span className="font-mono text-[10px] text-stone-600">Boleta sin DNI</span>
-          </div>
         </div>
       ) : (
-        <div className="bg-white p-2 rounded-lg border border-stone-200/90 flex items-center justify-between">
-          <div className="flex-1 min-w-0 pr-2">
-            <div className="flex items-center gap-1.5">
-              <span className="text-xs font-bold text-stone-900 truncate">
-                {customer.name}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 text-[11px] text-stone-600 font-mono">
-              <span className="bg-[#FFF7E1] text-amber-900 px-1 py-0.2 rounded font-semibold text-[10px]">
-                {customer.documentType} {customer.documentNumber}
-              </span>
-              {customer.phone && <span>· {customer.phone}</span>}
-            </div>
+        <div className="bg-white px-2 py-1 rounded-lg border border-stone-200/90 flex items-center justify-between">
+          <div className="flex-1 min-w-0 pr-1">
+            <span className="text-xs font-bold text-stone-900 truncate block">
+              {customer.name}
+            </span>
+            <span className="text-[10px] text-stone-500 font-mono">
+              {customer.documentType} {customer.documentNumber}
+            </span>
           </div>
           <button
             type="button"
@@ -154,7 +145,7 @@ export const CustomerLookup: React.FC = () => {
             className="p-1 text-stone-400 hover:text-rose-600 rounded hover:bg-stone-100 transition-colors"
             title="Cambiar cliente"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
