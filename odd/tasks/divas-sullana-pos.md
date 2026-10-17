@@ -17,15 +17,15 @@ React 19 + TypeScript + Tailwind CSS + Zustand in-memory state.
 - S12: Demo reset - Reloading or clicking `↻ Reiniciar datos` restores catalog, sales, and caja to pristine demo state.
 
 ## Tasks
-- T1: S2 | Scaffolding Vite + React 19 + TypeScript + Tailwind CSS + Lucide Icons + Zustand | pending
-- T2: S3, S5, S8, S12 | Data layer & Zustand store with 12 realistic fashion products, DNI simulation, sales history, held carts, and reset | pending
-- T3: S1, S2, S12 | Header component with branding, navigation tabs, caja balance, demo badge, and reset trigger | pending
-- T4: S1, S3, S4, S8 | Left section: Search/barcode scanner, category filter pills, and product grid with variants and stock indicators | pending
-- T5: S1, S5, S6, S7 | Right section: Cart item list, DNI lookup, subtotal/IGV/total calculator, payment method with change calculation, hold/cancel | pending
-- T6: S8, S9 | SUNAT Electronic Boleta modal with print simulation, QR code, itemization, and atomic stock deduction trigger | pending
-- T7: S10 | Inventario & Stock view with SKU table, category filter, low-stock alerts, and Adjust Stock modal | pending
-- T8: S11 | Historial de Ventas & Cierre de Caja view with daily metrics cards, sales timeline, and reprint modal | pending
-- T9: S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 | Integration polish, audio/visual cues, keyboard shortcuts, and build validation | pending
+- T1: S2 | Scaffolding Vite + React 19 + TypeScript + Tailwind CSS + Lucide Icons + Zustand | done | 004da57
+- T2: S3, S5, S8, S12 | Data layer & Zustand store with 12 realistic fashion products, DNI simulation, sales history, held carts, and reset | done | 004da57
+- T3: S1, S2, S12 | Header component with branding, navigation tabs, caja balance, demo badge, and reset trigger | done | 004da57
+- T4: S1, S3, S4, S8 | Left section: Search/barcode scanner, category filter pills, and product grid with variants and stock indicators | done | 004da57
+- T5: S1, S5, S6, S7 | Right section: Cart item list, DNI lookup, subtotal/IGV/total calculator, payment method with change calculation, hold/cancel | done | 004da57
+- T6: S8, S9 | SUNAT Electronic Boleta modal with print simulation, QR code, itemization, and atomic stock deduction trigger | done | 004da57
+- T7: S10 | Inventario & Stock view with SKU table, category filter, low-stock alerts, and Adjust Stock modal | done | 004da57
+- T8: S11 | Historial de Ventas & Cierre de Caja view with daily metrics cards, sales timeline, and reprint modal | done | 004da57
+- T9: S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 | Integration polish, audio/visual cues, keyboard shortcuts, and build validation | done | 004da57
 
 ## Log
 - L1: User prompt received requesting complete "Divas Sullana POS · Boutique" single-screen terminal POS application with exact Warm Botanical/Sunshine color palette tokens, 100vh viewport framing, zero-placeholder policy, SUNAT Boleta modal, Inventario & Ventas tabs, and atomic stock deduction.
