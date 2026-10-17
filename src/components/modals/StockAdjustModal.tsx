@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import { X, Layers, Plus, Minus, Check } from 'lucide-react'
 import { usePosStore } from '../../store/posStore'
-import { GarmentSize } from '../../types'
+import { GarmentSize, Product } from '../../types'
 
-export const StockAdjustModal: React.FC = () => {
-  const { adjustStockProduct, closeAdjustStock, adjustProductStock } = usePosStore()
+interface StockAdjustContentProps {
+  product: Product
+  onClose: () => void
+  onSave: (productId: string, size: GarmentSize, newStock: number, reason: string) => void
+}
 
-  if (!adjustStockProduct) return null
+const StockAdjustContent: React.FC<StockAdjustContentProps> = ({ product, onClose, onSave }) => {
+  // Safe unconditional hooks inside mounted modal content
+  const defaultSize = product.sizes[0]?.size || 'S'
+  const [selectedSize, setSelectedSize] = useState<GarmentSize>(defaultSize)
 
-  // State for adjustment
-  const [selectedSize, setSelectedSize] = useState<GarmentSize>(adjustStockProduct.sizes[0].size)
-  const currentSizeObj = adjustStockProduct.sizes.find((s) => s.size === selectedSize)
+  const currentSizeObj = product.sizes.find((s) => s.size === selectedSize)
   const currentStock = currentSizeObj ? currentSizeObj.stock : 0
 
   const [newStock, setNewStock] = useState<number>(currentStock)
@@ -18,7 +22,7 @@ export const StockAdjustModal: React.FC = () => {
 
   const handleSizeChange = (size: GarmentSize) => {
     setSelectedSize(size)
-    const target = adjustStockProduct.sizes.find((s) => s.size === size)
+    const target = product.sizes.find((s) => s.size === size)
     setNewStock(target ? target.stock : 0)
   }
 
@@ -26,9 +30,9 @@ export const StockAdjustModal: React.FC = () => {
     setNewStock((prev) => Math.max(0, prev + delta))
   }
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    adjustProductStock(adjustStockProduct.id, selectedSize, newStock, reason)
+    onSave(product.id, selectedSize, newStock, reason)
   }
 
   return (
@@ -43,27 +47,28 @@ export const StockAdjustModal: React.FC = () => {
             <div>
               <h3 className="font-bold text-sm text-stone-900">Ajustar Stock Físico</h3>
               <p className="text-[11px] text-stone-500 font-medium font-mono">
-                {adjustStockProduct.sku} · {adjustStockProduct.name}
+                {product.sku} · {product.name}
               </p>
             </div>
           </div>
           <button
-            onClick={closeAdjustStock}
+            onClick={onClose}
             className="p-1.5 text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-100 transition-colors"
+            title="Cerrar modal (Esc)"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSave} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-3.5 text-xs">
+        <form onSubmit={handleSubmit} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-3.5 text-xs">
           {/* Variant Size Selector */}
           <div>
             <label className="block font-bold text-stone-700 mb-1.5 uppercase text-[10px] tracking-wider">
               1. Selecciona Talla a Modificar
             </label>
             <div className="grid grid-cols-4 gap-2">
-              {adjustStockProduct.sizes.map((s) => {
+              {product.sizes.map((s) => {
                 const isSelected = selectedSize === s.size
                 return (
                   <button
@@ -81,7 +86,7 @@ export const StockAdjustModal: React.FC = () => {
                       className={`text-[10px] font-mono mt-0.5 ${
                         isSelected
                           ? 'text-white/80'
-                          : s.stock <= adjustStockProduct.minStockThreshold
+                          : s.stock <= product.minStockThreshold
                           ? 'text-amber-800 font-bold'
                           : 'text-stone-600'
                       }`}
@@ -166,7 +171,7 @@ export const StockAdjustModal: React.FC = () => {
           <div className="shrink-0 pt-3 border-t border-stone-200 flex items-center justify-end gap-2">
             <button
               type="button"
-              onClick={closeAdjustStock}
+              onClick={onClose}
               className="px-4 py-2 rounded-xl text-xs font-semibold text-stone-600 hover:bg-stone-100 transition-colors"
             >
               Cancelar
@@ -182,5 +187,20 @@ export const StockAdjustModal: React.FC = () => {
         </form>
       </div>
     </div>
+  )
+}
+
+export const StockAdjustModal: React.FC = () => {
+  const { adjustStockProduct, closeAdjustStock, adjustProductStock } = usePosStore()
+
+  if (!adjustStockProduct) return null
+
+  return (
+    <StockAdjustContent
+      key={adjustStockProduct.id}
+      product={adjustStockProduct}
+      onClose={closeAdjustStock}
+      onSave={adjustProductStock}
+    />
   )
 }
