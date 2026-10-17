@@ -68,7 +68,7 @@ export const InventoryView: React.FC = () => {
   })
 
   return (
-    <div className="h-full flex flex-col overflow-hidden bg-[#FAF9F5] p-6 space-y-5">
+    <div className="h-full flex flex-col overflow-hidden bg-[#FAF9F5] p-3.5 sm:p-5 space-y-3 sm:space-y-4">
       {/* Top Banner & KPI Metrics */}
       <div className="shrink-0 space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
@@ -202,9 +202,9 @@ export const InventoryView: React.FC = () => {
       </div>
 
       {/* Main Data Table */}
-      <div className="flex-1 overflow-hidden bg-white rounded-2xl border border-stone-200/80 shadow-warm-sm flex flex-col">
-        <div className="flex-1 overflow-y-auto">
-          <table className="w-full text-left text-xs border-collapse">
+      <div className="flex-1 min-h-0 overflow-hidden bg-white rounded-2xl border border-stone-200/80 shadow-warm-sm flex flex-col">
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-auto">
+          <table className="w-full min-w-[720px] text-left text-xs border-collapse">
             <thead className="bg-[#FFFDF7] border-b border-stone-200 sticky top-0 z-10 text-[10px] font-bold text-stone-500 uppercase tracking-wider">
               <tr>
                 <th className="py-3 px-4">Prenda / Modelo</th>

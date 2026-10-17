@@ -32,10 +32,10 @@ export const StockAdjustModal: React.FC = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-900/50 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl border border-stone-200 shadow-warm-xl max-w-md w-full overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-stone-900/50 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-white rounded-2xl border border-stone-200 shadow-warm-xl max-w-md w-full max-h-[calc(100vh-1rem)] sm:max-h-[90vh] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 bg-[#FFFDF7] border-b border-stone-200 flex items-center justify-between">
+        <div className="shrink-0 p-3.5 sm:p-4 bg-[#FFFDF7] border-b border-stone-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#FFD54F]/30 border border-[#FFE8A1] flex items-center justify-center text-stone-900">
               <Layers className="w-4 h-4 text-stone-800" />
@@ -56,7 +56,7 @@ export const StockAdjustModal: React.FC = () => {
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSave} className="p-5 space-y-4 text-xs">
+        <form onSubmit={handleSave} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-3.5 text-xs">
           {/* Variant Size Selector */}
           <div>
             <label className="block font-bold text-stone-700 mb-1.5 uppercase text-[10px] tracking-wider">
@@ -163,7 +163,7 @@ export const StockAdjustModal: React.FC = () => {
           </div>
 
           {/* Actions */}
-          <div className="pt-3 border-t border-stone-200 flex items-center justify-end gap-2">
+          <div className="shrink-0 pt-3 border-t border-stone-200 flex items-center justify-end gap-2">
             <button
               type="button"
               onClick={closeAdjustStock}

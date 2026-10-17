@@ -14,10 +14,10 @@ export const HeldSalesModal: React.FC = () => {
   if (!isHeldSalesModalOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-900/40 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl border border-stone-200 shadow-warm-xl max-w-md w-full overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-stone-900/40 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-white rounded-2xl border border-stone-200 shadow-warm-xl max-w-md w-full max-h-[calc(100vh-1rem)] sm:max-h-[85vh] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 bg-[#FFFDF7] border-b border-stone-200 flex items-center justify-between">
+        <div className="shrink-0 p-3.5 sm:p-4 bg-[#FFFDF7] border-b border-stone-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#FFB366]/20 border border-[#FFB366]/40 flex items-center justify-center text-amber-800">
               <Clock className="w-4 h-4" />
@@ -38,7 +38,7 @@ export const HeldSalesModal: React.FC = () => {
         </div>
 
         {/* Content list */}
-        <div className="p-4 flex-1 overflow-y-auto space-y-3">
+        <div className="p-3.5 sm:p-4 flex-1 min-h-0 overflow-y-auto space-y-3">
           {heldSales.length === 0 ? (
             <div className="text-center py-8 text-stone-400">
               <ShoppingBag className="w-10 h-10 mx-auto mb-2 opacity-50" />
